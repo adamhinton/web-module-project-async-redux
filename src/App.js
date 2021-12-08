@@ -1,9 +1,16 @@
+import {useEffect} from 'react';
 import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
+import { getCharacters } from './state/actions';
 
 function App(props) {
-  console.log(props)
+  console.log(props);
+
+  useEffect(() =>{
+    props.getCharacters();
+  }, [])
+
   return (
     <div className="App">
       <h1>Rick And Morty</h1>
@@ -17,4 +24,4 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {getCharacters})(App);
