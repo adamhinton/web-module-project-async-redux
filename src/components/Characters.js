@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import { getCharacters } from '../state/actions';
+import CharacterCard from './CharacterCard';
 
     function Characters(props) {
 
@@ -10,17 +11,19 @@ import { getCharacters } from '../state/actions';
 
     return (
         <div>
-            <p>here</p>
+            {console.log('PROPS:',  props.characters)}
+            {props.characters.map((char)=>{
+                return <CharacterCard character={char} />
+            })}
         </div>
     )
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = (state) =>{
     return{
-        characters:state,
+        characters:state.results,
     };
 };
 
-export default connect(mapStateToProps, {getCharacters})(Characters)
+export default connect(mapStateToProps, { getCharacters })(Characters)
 
-//   , []
